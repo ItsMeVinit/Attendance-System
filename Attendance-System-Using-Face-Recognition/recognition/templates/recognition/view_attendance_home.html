@@ -1,0 +1,112 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Attendance Dashboard</title>
+    
+    <!-- Bootstrap & Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <style>
+        body {
+            background: linear-gradient(to right, #141E30, #243B55);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+        .container-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2em;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+        .card-custom {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 15px;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card-custom:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .btn-custom {
+            background: #ff9800;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+        .btn-custom:hover {
+            background: #e68900;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'view-attendance-home' %}">Attendance Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'view-attendance-employee' %}">By Employee</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'view-attendance-date' %}">By Date</a></li>
+                    <li class="nav-item"><a class="nav-link btn-custom" href="{% url 'dashboard' %}">Back to Admin Panel</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h2 class="text-center">Today's Statistics</h2>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-4">
+                <div class="card-custom">
+                    <h5>Total Employees</h5>
+                    <p class="fs-3">{{ total_num_of_emp }}</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-custom">
+                    <h5>Employees Present Today</h5>
+                    <p class="fs-3">{{ emp_present_today }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <h2 class="text-center">Weekly Attendance Overview</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="container-box">
+                    <h4>Last Week</h4>
+                    <img class="img-fluid rounded" src="{% static 'recognition/img/attendance_graphs/last_week/1.png' %}" alt="Last Week Attendance">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="container-box">
+                    <h4>This Week</h4>
+                    <img class="img-fluid rounded" src="{% static 'recognition/img/attendance_graphs/this_week/1.png' %}" alt="This Week Attendance">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+ 

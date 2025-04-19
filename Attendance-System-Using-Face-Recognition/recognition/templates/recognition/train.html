@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Train Model</title>
+
+    <!-- Bootstrap & Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
+    <style>
+        body {
+            background: linear-gradient(to right, #141E30, #243B55);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+        .container-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5em;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .hero-title {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1em;
+        }
+        .btn-custom {
+            background: #ff9800;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            transition: 0.3s;
+            font-size: 18px;
+            width: 100%;
+            border: none;
+        }
+        .btn-custom:hover {
+            background: #e68900;
+            transform: scale(1.05);
+        }
+        .back-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .training-image {
+            width: 100%;
+            max-width: 900px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Back Button -->
+<div class="container mt-4">
+    <a href="{% url 'dashboard' %}" class="back-link">⬅ Back to Dashboard</a>
+</div>
+
+<!-- Training Visualization Section -->
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="container-box">
+        <h2 class="hero-title">Training Model</h2>
+        <img src="{% static 'recognition/img/training_visualisation.png' %}" class="img-fluid training-image" alt="Training Visualization">
+    </div>
+</div>
+
+<!-- Flash Messages -->
+<div class="container mt-4">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<!-- Bootstrap Script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

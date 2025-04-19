@@ -1,0 +1,147 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Attendance</title>
+
+    <!-- Bootstrap & Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background: linear-gradient(to right, #141E30, #243B55);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+        .container-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2.5em;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            margin-top: 30px;
+        }
+        .hero-title {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1em;
+        }
+        .btn-custom {
+            background: #ff9800;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            transition: 0.3s;
+            font-size: 18px;
+        }
+        .btn-custom:hover {
+            background: #e68900;
+            transform: scale(1.05);
+        }
+        table {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th {
+            background: #ff9800;
+            color: #000;
+            text-align: center;
+        }
+        td {
+            text-align: center;
+        }
+        tr:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: rgba(255, 255, 255, 0.1);">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'view-my-attendance-employee-login' %}">My Attendance</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link btn btn-custom" href="{% url 'dashboard' %}">Back to Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Form Section -->
+    <div class="container">
+        <div class="container-box">
+            <h3 class="hero-title">Select Duration</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group text-center">
+                    <button class="btn btn-custom" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Attendance Table -->
+    {% if qs %}
+    <div class="container">
+        <div class="container-box">
+            <h3 class="hero-title">Attendance Records</h3>
+            <table class="table table-striped text-white">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Employee</th>
+                        <th scope="col">Present</th>
+                        <th scope="col">Time In</th>
+                        <th scope="col">Time Out</th>
+                        <th scope="col">Hours</th>
+                        <th scope="col">Break Hours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in qs %}
+                    <tr>
+                        <td>{{ item.date }}</td>
+                        <td>{{ item.user.username }}</td>
+                        <td>{% if item.present %} ✅ {% else %} ❌ {% endif %}</td>
+                        <td>{% if item.time_in %} {{ item.time_in }} {% else %} - {% endif %}</td>
+                        <td>{% if item.time_out %} {{ item.time_out }} {% else %} - {% endif %}</td>
+                        <td>{{ item.hours }}</td>
+                        <td>{{ item.break_hours }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Success/Error Messages -->
+    <div class="container mt-3">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-warning text-center">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
