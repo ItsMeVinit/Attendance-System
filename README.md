@@ -39,7 +39,6 @@ using a Linear SVM (scikit-learn)
 - make a separate [python virtual environment](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/) or use the default one already installed on your machine
 - Download CMake
 - Visual Studio C++
-- Download [this](https://drive.google.com/uc?export=download&id=1HzO-rnEqgkZ6tLt48yWhYgHk1_zOIYhf) file
 - Python 3.7.6
 - Download this fle and install https://github.com/z-mahmud22/Dlib_Windows_Python3.x/blob/main/dlib-19.22.99-cp37-cp37m-win_amd64.whl
 - Download [this](https://drive.google.com/uc?export=download&id=1HzO-rnEqgkZ6tLt48yWhYgHk1_zOIYhf) file
