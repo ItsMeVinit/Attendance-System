@@ -1,47 +1,67 @@
 {% load static %}
 
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unauthorized Access</title>
 
-	  <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Google Fonts & Bootstrap -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-   <style>
-    body{
-      background: url('{% static "recognition/img/bg_image.png"%}') no-repeat center center fixed;
-      background-size: cover;
-      
-    }
-   
-   </style>
-
-
-	
+    <style>
+        body {
+            background: linear-gradient(to right, #141E30, #243B55);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+        .alert-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2.5em;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            margin-top: 100px;
+        }
+        .btn-custom {
+            background: #ff9800;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            transition: 0.3s;
+            font-size: 16px;
+            margin-top: 1em;
+        }
+        .btn-custom:hover {
+            background: #e68900;
+            transform: scale(1.05);
+        }
+        .navbar-custom {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
 </head>
-<body >
-<div class="col-lg-12" style="background: rgba(0,0,0,0.6);max-height: 20px ; padding-top:1em;padding-bottom:3em;color:#fff;border-radius:10px;-webkit-box-shadow: 2px 2px 15px 0px rgba(0, 3, 0, 0.7);
--moz-box-shadow:    2px 2px 15px 0px rgba(0, 3, 0, 0.7);
-box-shadow:         2px 2px 15px 0px rgba(0, 3, 0, 0.7); margin-left:auto; margin-right: auto; ">
+<body>
 
-  <a href="{% url 'dashboard' %}"><h5 class="text-left">  Dashboard</h5></a>
-</div>
- 
-<div class="alert alert-danger" role="alert" style=" margin-top: 50px;  max-height: 50px;">
-  <h3>Sorry, {{user.username}}. You are not authorised to view this page.</h3>
-</div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand ms-3" href="{% url 'dashboard' %}">Attendance Dashboard</a>
+        </div>
+    </nav>
 
+    <!-- Alert Box -->
+    <div class="container">
+        <div class="alert-box">
+            <h3>Sorry, {{ user.username }}. You are not authorised to view this page.</h3>
+            <a href="{% url 'dashboard' %}" class="btn btn-custom">Return to Dashboard</a>
+        </div>
+    </div>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
-  </html>
+</body>
+</html>
